@@ -1,9 +1,7 @@
 var search, results, allBooks = [];
 
-var indexOnAuthorCheckbox = document.getElementById('indexOnAuthorCheckbox');
 var indexStrategySelect = document.getElementById('indexStrategySelect');
 var removeStopWordsCheckbox = document.getElementById('removeStopWordsCheckbox');
-var indexOnTitleCheckbox = document.getElementById('indexOnTitleCheckbox');
 var useStemmingCheckbox = document.getElementById('useStemmingCheckbox');
 var sanitizerSelect = document.getElementById('sanitizerSelect');
 var tfIdfRankingCheckbox = document.getElementById('tfIdfRankingCheckbox');
@@ -13,10 +11,8 @@ var rebuildAndRerunSearch = function() {
   searchBooks();
 };
 
-indexOnAuthorCheckbox.onchange = rebuildAndRerunSearch;
 indexStrategySelect.onchange = rebuildAndRerunSearch;
 removeStopWordsCheckbox.onchange = rebuildAndRerunSearch;
-indexOnTitleCheckbox.onchange = rebuildAndRerunSearch;
 useStemmingCheckbox.onchange = rebuildAndRerunSearch;
 sanitizerSelect.onchange = rebuildAndRerunSearch;
 tfIdfRankingCheckbox.onchange = rebuildAndRerunSearch;
@@ -40,44 +36,77 @@ var rebuildSearchIndex = function() {
     search.searchIndex = new JsSearch.UnorderedSearchIndex();
   }
 
-  if (indexOnTitleCheckbox.checked) {
+    search.addIndex('link');
+    search.addIndex('keyw');
+    search.addIndex('type');
+    search.addIndex('area');
     search.addIndex('titl');
-  }
-  if (indexOnAuthorCheckbox.checked) {
     search.addIndex('desc');
-  }
+ 
 
   search.addDocuments(allBooks);
 };
 
 var indexedBooksTable = document.getElementById('indexedBooksTable');
-var indexedBooksTBody = indexedBooksTable.tBodies[0];
 var searchInput = document.getElementById('searchInput');
 var bookCountBadge = document.getElementById('bookCountBadge');
 
+const type2color = {
+  data: ['Daten', 'primary'],
+  info: ['Informationen', 'link'],
+  news: ['Nachrichten', 'warning'],
+  code: ['Code', 'info'],
+  tool: ['Tool', 'success'],
+  map: ['Karte', 'danger'],
+  network: ['Netzwerk', 'white'],
+  info: ['Info', 'info'],
+  conference: ['Konferenz', 'dark'],
+}
+
 var updateBooksTable = function(books) {
-  indexedBooksTBody.innerHTML = '';
+  indexedBooksTable.innerHTML = '';
 
   var tokens = search.tokenizer.tokenize(searchInput.value);
 
   for (var i = 0, length = books.length; i < length; i++) {
     var book = books[i];
 
-    var isbnColumn = document.createElement('td');
-    isbnColumn.innerText = book.link;
 
-    var titleColumn = document.createElement('td');
-    titleColumn.innerHTML = book.titl;
+    var icon = type2color[book["type"].toLowerCase()] ;
+    console.log("icon",book["type"].toLowerCase(), icon);
+    book['icontext'] = icon[0];
+    book['icon'] = icon[1]; 
 
-    var authorColumn = document.createElement('td');
-    authorColumn.innerHTML = book.type;
+  /*
+  link: row[0],
+  type: row[2],
+  prio: row[3],
+  keyw: row[4],
+  area: row[5],
+  titl: row[6],
+  desc: row[7]
 
-    var tableRow = document.createElement('tr');
-    tableRow.appendChild(isbnColumn);
-    tableRow.appendChild(titleColumn);
-    tableRow.appendChild(authorColumn);
+<span class="tag is-black">Black</span>
+<span class="tag is-dark">Dark</span>
+<span class="tag is-light">Light</span>
+<span class="tag is-white">White</span>
+<span class="tag is-primary">Primary</span>
+<span class="tag is-link">Link</span>
+<span class="tag is-info">Info</span>
+<span class="tag is-success">Success</span>
+<span class="tag is-warning">Warning</span>
+<span class="tag is-danger">Danger</span>
 
-    indexedBooksTBody.appendChild(tableRow);
+  */
+    var source   = document.getElementById("entry-template").innerHTML;
+    var template = Handlebars.compile(source);
+    
+    if (typeof book.keyw === 'string' || book.keyw instanceof String) {
+      book.keyw = book.keyw.split(',').map(function(s) { return s.trim() });
+    }
+    var html    = template(book);
+
+    indexedBooksTable.innerHTML += html;
   }
 };
 
@@ -102,7 +131,7 @@ var searchBooks = function() {
 searchInput.oninput = searchBooks;
 
 var updateBookCount = function(numBooks) {
-  bookCountBadge.innerText = numBooks + ' books';
+  bookCountBadge.innerText = numBooks + ' Links gefunden:';
 };
 var hideElement  = function(element) {
   element.className += ' hidden';

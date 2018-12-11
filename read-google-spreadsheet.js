@@ -111,6 +111,7 @@ function listMajors(auth) {
         if (row[2]) {
           dataset.push({
             link: row[0],
+            date: row[1],
             type: row[2],
             prio: row[3],
             keyw: row[4],

@@ -5,3 +5,45 @@ mark {
     padding: 2px;
     margin: -2px;
 }
+#searchcontainer {
+    margin-top:60px;
+}
+.card:hover {
+    border: 1px solid black;
+    background-color: #ccc;
+}
+
+fonts {
+
+
+    font-family: 'Ultra', serif;
+
+    font-family: 'Russo One', sans-serif;
+
+    font-family: 'Kanit', sans-serif;
+
+    font-family: 'Montserrat', sans-serif;
+
+
+
+}
+.logo-outer {
+    margin-top:10px
+}
+.logoimg {
+    width: 50px;
+    padding-top: 33px
+}
+.navbar-item .logoimg img {
+    max-height: 100%;
+}
+.logo {
+    font-family: 'Jomhuria', cursive;
+    font-size: 60px;
+    overflow: hidden;
+    height: 40px;
+    width: 100%;
+}
+.logo span {
+    color:#999;
+}

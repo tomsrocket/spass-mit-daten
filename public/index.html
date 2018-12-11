@@ -2,25 +2,97 @@
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8">
-  <title>JS Search</title>
-  <link rel="stylesheet" href="libs/bootstrap.css">
-  <link rel="stylesheet" href="libs/font-awesome.css">
+  <title>SpassMitDaten.de</title>
+  <!-- link rel="stylesheet" href="libs/bulma.css" -->
+  <link rel="stylesheet" href="https://jenil.github.io/bulmaswatch/flatly/bulmaswatch.min.css">
+  <!-- link rel="stylesheet" href="libs/font-awesome.css" -->
   <link rel="stylesheet" href="style.css">
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'>
+  <link href="https://fonts.googleapis.com/css?family=Jomhuria|Kanit:800|Montserrat:900|Russo+One|Ultra" rel="stylesheet"> 
 </head>
 <body>
 
-<div class="container">
-  <h1>JS Search Demo</h1>
-  <h4>
-    <i class="fa fa-github-square"></i>
-    <a href="https://github.com/bvaughn/js-search">github.com/bvaughn/js-search</a>
-  </h4>
 
-  <ul class="list-inline">
-    <li>Books indexed by:</li>
-    <li><input type="checkbox" checked="checked" id="indexOnTitleCheckbox"> Title</li>
-    <li><input type="checkbox" checked="checked" id="indexOnAuthorCheckbox"> Author</li>
-    <li>Index strategy:</li>
+  <nav class="navbar is-fixed-top has-shadow"
+   style="transition: all 0.3s ease 0s;">
+   <div class="container">
+     <div class="navbar-brand">
+       <div class="logo-outer">
+        <a href="/" class="navbar-item router-link-exact-active is-active logo">
+          <div class="logoimg">
+            <img src="img/happy-smile.png" />
+          </div>
+          spass<span>mit</span>daten.de
+        </a> 
+    </div>  
+      <div data-target="navMenuIndex" class="navbar-burger burger"><span></span> <span></span> <span></span></div>
+    </div> 
+    <div id="navMenuIndex" class="navbar-menu">
+      <div class="navbar-start"><div class="navbar-item has-dropdown is-hoverable">
+        <a href="/games" class="navbar-link">Kategorien</a> 
+        <div class="navbar-dropdown">
+          <a href="/games" class="navbar-item">Regionen</a> 
+          <hr class="navbar-divider" /> 
+          <a href="/reviews" class="navbar-item">
+            Reviews
+          </a> 
+          <a href="/recommendations" class="navbar-item">
+            Recommendations
+          </a>
+        </div>
+      </div> 
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a href="#" class="navbar-link">Regionen</a> 
+        <div class="navbar-dropdown">
+          <a href="/users" class="navbar-item">Users</a> 
+          <hr class="navbar-divider"> 
+          <a href="/staff" class="navbar-item">
+            Staff
+          </a>
+        </div>
+      </div>
+    </div> 
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control has-icons-left is-hidden-touch">
+            <input type="text" placeholder="Search..." class="input nav-search" style="width: 200px;"> 
+            <span class="icon is-left">
+              <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg><!-- <i class="fas fa-search"></i> --></span></p> <p class="control"><a href="/login" class="button"><span class="icon is-small"><svg class="svg-inline--fa fa-sign-in-alt fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="sign-in-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M416 448h-84c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h84c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32h-84c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h84c53 0 96 43 96 96v192c0 53-43 96-96 96zm-47-201L201 79c-15-15-41-4.5-41 17v96H24c-13.3 0-24 10.7-24 24v96c0 13.3 10.7 24 24 24h136v96c0 21.5 26 32 41 17l168-168c9.3-9.4 9.3-24.6 0-34z"></path></svg><!-- <i class="fas fa-sign-in-alt"></i> --></span> <span>Login</span></a></p> <p class="control"><a href="/register" class="button is-primary"><span class="icon"><svg class="svg-inline--fa fa-user-plus fa-w-20" aria-hidden="true" data-prefix="fas" data-icon="user-plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M224 32c77.32 0 140 62.68 140 140s-62.68 140-140 140S84 249.32 84 172 146.68 32 224 32zm160.373 292.093l-62.399-15.6c-65.557 47.154-145.021 36.631-195.948 0l-62.399 15.6C26.233 333.442 0 367.04 0 405.585V438c0 23.196 18.804 42 42 42h364c23.196 0 42-18.804 42-42v-32.415c0-38.545-26.233-72.143-63.627-81.492zM628 224.889h-68.889V156c0-6.627-5.373-12-12-12h-38.222c-6.627 0-12 5.373-12 12l-.002 68.887-68.887.002c-6.627 0-12 5.373-12 12v38.222c0 6.627 5.373 12 12 12l68.887.002.002 68.887c0 6.627 5.373 12 12 12h38.222c6.627 0 12-5.373 12-12l.002-68.887 68.887-.002c6.627 0 12-5.373 12-12v-38.222c0-6.627-5.373-12-12-12z"></path></svg>
+                  <!-- <i class="fas fa-user-plus"></i> -->
+                </span> 
+              <span>Register</span></a></p></div></div> <!---->
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <section id="searchcontainer" class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input is-large" type="search" id="searchInput" placeholder="Linkliste durchsuchen">
+                                <span class="icon is-medium is-left">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                                <span class="icon is-medium is-right">
+                                    <i class="fa fa-empire"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<div class="container">
+ 
+  <ul class="list-inline" style="display:none">
     <li>
       <select id="indexStrategySelect">
         <option value="JsSearch.AllSubstringsIndexStrategy">All substrings</option>
@@ -39,37 +111,66 @@
     <li><input type="checkbox" id="useStemmingCheckbox"> Use stemming</li>
     <li><input type="checkbox" id="tfIdfRankingCheckbox" checked="checked"> TF-IDF ranking</li>
   <p></p>
+</ul>
+<span id="bookCountBadge" class="badge">739 books</span>
 
-  <form>
-    <div class="form-group">
-      <label for="searchInput">
-        Filter text
-        <span id="bookCountBadge" class="badge">739 books</span>
-      </label>
-      <input class="form-control" type="search" id="searchInput" placeholder="Search..">
+
+  <div id="indexedBooksTable" class="columns is-multiline">
+    
+  </div>
+<!--
+  link: row[0],
+  type: row[2],
+  prio: row[3],
+  keyw: row[4],
+  area: row[5],
+  titl: row[6],
+  desc: row[7]
+  -->
+<script id="entry-template" type="text/x-handlebars-template">
+
+  <div class="column is-one-third">
+    <div class="card">
+      <div class="card-content">
+          <span class="tag is-{{icon}} is-pulled-right">{{icontext}}</span>
+        <a href="{{link}}">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">{{titl}}</p>
+              <p class="subtitle is-6">{{area}}</p>
+            </div>
+          </div>
+        </a>
+        <div class="content">
+          {{desc}}
+
+          {{#each keyw}}  
+            {{#if this}}
+              <a href="#">#{{this}}</a>
+            {{/if}}
+          {{/each}}
+          
+          <br>
+
+
+          <time datetime="{{date}}">{{date}}</time>
+        </div>
+      </div>
     </div>
-  </form>
+  </div>
+</script>
 
-  <table id="indexedBooksTable" class="table table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Link</th>
-        <th>Title</th>
-        <th>Bechreibung</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
 
   <div id="loadingProgressBar" class="progress hidden">
     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
       Loading book data...
     </div>
   </div>
-</ul></div>
+</div>
 
 <script type="text/javascript" src="libs/PorterStemmer1980.js"></script>
 <script type="text/javascript" src="libs/js-search.js"></script>
+<script type="text/javascript" src="libs/handlebars-v4.0.12.js"></script>
 <script type="text/javascript" src="app.js"></script>
 
 </body></html>
