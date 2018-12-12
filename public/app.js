@@ -1,3 +1,5 @@
+
+
 var search, results, allBooks = [];
 
 var indexStrategySelect = document.getElementById('indexStrategySelect');
@@ -47,7 +49,7 @@ var rebuildSearchIndex = function() {
   search.addDocuments(allBooks);
 };
 
-var indexedBooksTable = document.getElementById('indexedBooksTable');
+var indexedBooksTable = document.getElementById('linkResultsList');
 var searchInput = document.getElementById('searchInput');
 var bookCountBadge = document.getElementById('bookCountBadge');
 
@@ -56,9 +58,11 @@ const type2color = {
   info: ['Informationen', 'link'],
   news: ['Nachrichten', 'warning'],
   code: ['Code', 'info'],
-  tool: ['Tool', 'success'],
+  tool: ['Werkzeug', 'success'],
   map: ['Karte', 'danger'],
-  network: ['Netzwerk', 'white'],
+  network: ['Netzwerk', 'light'],
+  book: ['Buch', 'info'],
+  blog: ['Blog', 'info'],
   info: ['Info', 'info'],
   conference: ['Konferenz', 'dark'],
 }
@@ -73,7 +77,10 @@ var updateBooksTable = function(books) {
 
 
     var icon = type2color[book["type"].toLowerCase()] ;
-    console.log("icon",book["type"].toLowerCase(), icon);
+    if (!icon) {
+      console.log("icon not found:",book["type"].toLowerCase());
+      icon = ['',''];
+    }
     book['icontext'] = icon[0];
     book['icon'] = icon[1]; 
 
