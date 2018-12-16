@@ -63,9 +63,11 @@ a.navbar-item.is-active.logo,
 .logo span {
     color:#933;
 }
+.hidden {
+    display:none!important
+}
 
-
-
+.footer .content a:hover {color:white!important}
 
 
 
