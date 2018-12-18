@@ -138,7 +138,7 @@ var searchBooks = function() {
 searchInput.oninput = searchBooks;
 
 var updateBookCount = function(numBooks) {
-  bookCountBadge.innerText = numBooks + ' Links gefunden:';
+  bookCountBadge.innerText = numBooks + ' Links gefunden';
 };
 var hideElement  = function(element) {
   element.className += ' hidden';
