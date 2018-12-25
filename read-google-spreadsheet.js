@@ -80,6 +80,20 @@ function getNewToken(oAuth2Client, callback) {
 
 
 var dataset = [];
+
+var siteConfig = {
+  build: {
+    srcPath: './src',
+    outputPath: './public'
+  },
+  site: {
+    title: 'SpassMitDaten.de',
+    categories: [],
+    regions: [],
+    tags: []
+  }
+};
+
 /**
  * Prints the names and majors of students in a sample spreadsheet:
  * @see https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
@@ -109,16 +123,28 @@ function listMajors(auth) {
 */
       rows.map((row) => {
         if (row[2]) {
+          const type = row[2];
+          const area = row[5];
+          const keyw = row[4];
           dataset.push({
             link: row[0],
             date: row[1],
-            type: row[2],
+            type: type,
             prio: row[3],
-            keyw: row[4],
-            area: row[5],
+            keyw: keyw,
+            area: area,
             titl: row[6],
             desc: row[7]
           });
+          if (type && !siteConfig.site.categories.includes(type)) {
+            siteConfig.site.categories.push(type);
+          }
+          if (area && !siteConfig.site.regions.includes(area)) {
+            siteConfig.site.regions.push(area);
+          }
+          if (keyw && !siteConfig.site.tags.includes(keyw)) {
+            siteConfig.site.tags.push(keyw);
+          }
         }
       });
 
@@ -127,10 +153,15 @@ function listMajors(auth) {
         if(err) {
             return console.log(err);
         }
-  
-        console.log("The file was saved!");
+        console.log("The links.json file was saved!");
       }); 
       
+      fs.writeFile("site.config.js", 'module.exports = ' + JSON.stringify(siteConfig) + ';', function(err) {
+        if(err) {
+            return console.log(err);
+        }
+        console.log("The site.config.js file was saved!");
+      }); 
 
     } else {
       console.log('No data found.');

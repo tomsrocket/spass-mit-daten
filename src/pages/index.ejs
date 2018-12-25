@@ -1,0 +1,133 @@
+
+  
+<div class="bodymargin">
+
+    <section class="hero">
+      <div class="hero-body ">
+        <div class="container">
+            <div class="logo-outer">
+                <a class="navbar-item router-link-exact-active is-active logo">
+                  <div class="logoimg">
+                    <img src="/img/logo-smile.png" />    
+                  </div>
+                  spass<span>mit</span>daten.de
+                </a> 
+              </div>  
+
+          <h1 class="title topmargin has-text-black">
+           Die Linksammlung zum Thema "Open Data"
+          </h1>
+          <h2 class="subtitle has-text-black">
+            Hier können Sie unsere Sammlung an Open-Data-Webseiten durchsuchen. 
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section id="searchcontainer" class="hero">
+        <div class="hero-body is-paddingless">
+            <div class="container">
+                <div class="card bottommargin">
+                    <div class="card-content">
+                        <div class="content">
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input is-large" type="search" id="searchInput" placeholder="Linkliste durchsuchen">
+                                <span class="icon is-medium is-left">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                                <span class="icon is-medium is-right">
+                                    <i class="fa fa-empire"></i>
+                                </span>
+                            </div>
+                            <span id="bookCountBadge" class="badge">...</span>
+
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="container topmargin">
+ 
+  <ul class="list-inline" style="display:none">
+    <li>
+      <select id="indexStrategySelect">
+        <option value="JsSearch.AllSubstringsIndexStrategy">All substrings</option>
+        <option value="JsSearch.ExactWordIndexStrategy">Exact match</option>
+        <option value="JsSearch.PrefixIndexStrategy" selected="selected">Prefix matching</option>
+      </select>
+    </li>
+    <li><input type="checkbox" id="removeStopWordsCheckbox"> Remove stop words</li>
+    <li>Sanitizer:</li>
+    <li>
+      <select id="sanitizerSelect">
+        <option value="JsSearch.CaseSensitiveSanitizer">Case Sensitive</option>
+        <option value="JsSearch.LowerCaseSanitizer" selected="selected">Lower Case</option>
+      </select>
+    </li>
+    <li><input type="checkbox" id="useStemmingCheckbox"> Use stemming</li>
+    <li><input type="checkbox" id="tfIdfRankingCheckbox" checked="checked"> TF-IDF ranking</li>
+  <p></p>
+</ul>
+
+
+
+  <div id="loadingProgressBar">
+      Linkliste wird geladen..
+  </div>
+
+  <div id="linkResultsList" class="columns is-multiline" style="min-height:400px">
+    
+  </div>
+</div>
+
+
+
+<!--
+  link: row[0],
+  type: row[2],
+  prio: row[3],
+  keyw: row[4],
+  area: row[5],
+  titl: row[6],
+  desc: row[7]
+-->
+<script id="entry-template" type="text/x-handlebars-template">
+
+  <div class="column is-one-third">
+    <div class="card  is-shady">
+      <div class="card-content">
+          <span class="tag is-{{icon}} is-pulled-right">{{icontext}}</span>
+        <a href="{{link}}">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">{{titl}}</p>
+              <p class="subtitle is-6">{{area}}</p>
+            </div>
+          </div>
+        </a>
+        <div class="content">
+          {{desc}}
+
+          {{#each keyw}}  
+            {{#if this}}
+              <a href="#">#{{this}}</a>
+            {{/if}}
+          {{/each}}
+          
+          <br>
+
+
+          <time datetime="{{date}}">{{date}}</time>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/javascript" src="/libs/PorterStemmer1980.js"></script>
+<script type="text/javascript" src="/libs/js-search.js"></script>
+<script type="text/javascript" src="/libs/handlebars-v4.0.12.js"></script>
+<script type="text/javascript" src="/app.js"></script>
