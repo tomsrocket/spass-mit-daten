@@ -10,7 +10,7 @@ Dieses Repository enthält den Code für die Open Data Linkliste auf spassmitdat
 
 ## Install
 
-1. Copy our credential files to the config directory
+1. Copy your credential files to the config directory
 2. Execute the following commands: 
 ```
     npm install googleapis@27 --save
@@ -20,21 +20,20 @@ Dieses Repository enthält den Code für die Open Data Linkliste auf spassmitdat
 3. The links will be written to _public/links.json_
 
 
-## Run in dev mode
+## Development
 
+The following command builds the files in watch mode and serves the result at localhost:3000
 ```
     npx nanogen start 
 ```
 
-## Build for prod
+## Prod build
 
 ```
+    # Build for prod
     npm run build
-```
 
-## Serve static files
-
-```
+    # Serve static files
     cd public;sudo docker run -d -v `pwd -P`:/var/www:ro -p 8080:8080 trinitronx/python-simplehttpserver
 ```
 

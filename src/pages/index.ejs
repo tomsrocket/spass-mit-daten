@@ -5,14 +5,15 @@
     <section class="hero">
       <div class="hero-body ">
         <div class="container">
-            <div class="logo-outer">
-                <a class="navbar-item router-link-exact-active is-active logo">
-                  <div class="logoimg">
-                    <img src="/img/logo-smile.png" />    
-                  </div>
-                  spass<span>mit</span>daten.de
-                </a> 
-              </div>  
+          <div class="toplogo logo">
+            <div class="logoimg">
+              <img src="/img/logo-smile.png" />    
+            </div>
+            <div class="logotxt">
+              spass<span>mit</span>daten.de
+            </div>
+
+          </div>  
 
           <h1 class="title topmargin has-text-black">
            Die Linksammlung zum Thema "Open Data"
@@ -49,6 +50,28 @@
     </section>
 </div>
 
+<section class="has-text-white has-background-primary">
+  <div class="container tagSection topmargin">
+
+
+    <div id="tagList" class="columns is-multiline">
+      <div class="column">Kategorien:
+        <% site.categories.forEach(function(tag) { %>
+          <a href="/#<%= tag %>" class="tag is-dark"><%= tag %></a> 
+        <% }) %>
+      </div>
+    </div>
+
+    <div id="regionList" class="columns is-multiline">
+      <div class="column">Regionen:
+        <% site.regions.forEach(function(tag) { %>
+          <a href="/#<%= tag %>" class="tag is-info"><%= tag %></a> 
+        <% }) %>
+      </div>
+    </div>
+
+  </div>
+</section>
 <div class="container topmargin">
  
   <ul class="list-inline" style="display:none">

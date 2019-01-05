@@ -149,7 +149,7 @@ function listMajors(auth) {
       });
 
 
-      fs.writeFile("public/links.json", JSON.stringify({links: dataset}), function(err) {
+      fs.writeFile("src/assets/links.json", JSON.stringify({links: dataset}), function(err) {
         if(err) {
             return console.log(err);
         }
