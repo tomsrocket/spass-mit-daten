@@ -4,14 +4,17 @@
   "description": "Dieses Repository enthält den Code für die Open Data Linkliste auf spassmitdaten.de.",
   "main": "read-google-spreadsheet.js",
   "dependencies": {
-    "googleapis": "^27.0.0"
+    "fs": "0.0.1-security",
+    "googleapis": "^27.0.0",
+    "md5": "^2.2.1"
   },
   "devDependencies": {
     "nanogen": "^0.4.2"
   },
   "scripts": {
     "start": "nanogen start",
-    "build": "node read-google-spreadsheet.js;npx nanogen build"
+    "build": "node read-google-spreadsheet.js;npx nanogen build",
+    "generate-previews": "npx phantomjs generate-preview-thumbnails.js"
   },
   "repository": {
     "type": "git",

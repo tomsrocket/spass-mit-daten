@@ -1,6 +1,7 @@
 const fs = require('fs');
+const md5 = require('md5');
 const readline = require('readline');
-const {google} = require('googleapis');
+const { google } = require('googleapis');
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
@@ -126,6 +127,8 @@ function listMajors(auth) {
           const type = row[2];
           const area = row[5];
           const keyw = row[4];
+          const filename = md5(row[0]);
+          const imgpath = "screenshots/large/" + filename + ".png";
           dataset.push({
             link: row[0],
             date: row[1],
@@ -134,7 +137,8 @@ function listMajors(auth) {
             keyw: keyw,
             area: area,
             titl: row[6],
-            desc: row[7]
+            desc: row[7],
+            img: fs.existsSync(imgpath) ? filename : ""
           });
           if (type && !siteConfig.site.categories.includes(type)) {
             siteConfig.site.categories.push(type);

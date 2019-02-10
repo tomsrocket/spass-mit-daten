@@ -19,6 +19,14 @@ Dieses Repository enthält den Code für die Open Data Linkliste auf spassmitdat
 ```
 3. The links will be written to _public/links.json_
 
+## Generate screenshot thumbnail previews
+```
+    # generate all missing previews
+    npm run generate-previews
+
+    # TODO --- Then we need some command to make smaller versions of the screenshots, similar to this: 
+    convert screenshots-large/$repoName.png  -background white -resize 600x -crop 600x400+0+0 -strip -quality 80 $screenshot_file
+```
 
 ## Development
 
