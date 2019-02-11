@@ -23,10 +23,11 @@ Dieses Repository enthält den Code für die Open Data Linkliste auf spassmitdat
 ```
     # generate all missing previews
     npm run generate-previews
-
-    # TODO --- Then we need some command to make smaller versions of the screenshots, similar to this: 
-    convert screenshots-large/$repoName.png  -background white -resize 600x -crop 600x400+0+0 -strip -quality 80 $screenshot_file
 ```
+That command ^ does the following things:  
+1. Generate screenshots of all websites via: npx phantomjs generate-website-previews.js
+2. Optimize the screenshot images to width 480px via: node generate-thumbnails.js
+
 
 ## Development
 
