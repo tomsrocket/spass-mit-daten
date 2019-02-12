@@ -121,6 +121,13 @@
 
   <div class="column is-one-third">
     <div class="card  is-shady">
+      {{#if image}}
+        <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="{{image}}">
+            </figure>
+        </div>
+      {{/if}}
       <div class="card-content">
           <span class="tag is-{{icon}} is-pulled-right">{{icontext}}</span>
         <a href="{{link}}">

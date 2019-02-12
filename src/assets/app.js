@@ -83,6 +83,8 @@ var updateBooksTable = function(books) {
     }
     book['icontext'] = icon[0];
     book['icon'] = icon[1]; 
+    var img = book['img'];
+    book['image'] = img ? "/screens/" + img + ".jpg" : "";
 
   /*
   link: row[0],

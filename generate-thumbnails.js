@@ -3,9 +3,8 @@
 const sharp = require('sharp');
 const fs = require('fs');
 
-
-const thumbnailWidth = 480;
-const jpgQuality = 70;
+const thumbnailWidth = 320;
+const jpgQuality = 65;
 
 (async () => {
     try {
@@ -16,7 +15,7 @@ const jpgQuality = 70;
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
             console.log("resizing to " + thumbnailWidth, file);
-            await convert('./screenshots/large/' + file, 'screenshots/small/' + file + ".jpg");
+            await convert('./screenshots/large/' + file, 'screenshots/small/' + file.replace(".png", ".jpg"));
         } 
 
     } catch (err) {
@@ -33,7 +32,10 @@ function convert(inputFile, outputFile) {
     return new Promise(function(resolve, reject) {
         sharp(inputFile)
         .resize({ width: thumbnailWidth })
-        .jpeg({quality: jpgQuality,     chromaSubsampling: '4:4:4'})
+        .jpeg({
+            quality: jpgQuality,
+            chromaSubsampling: '4:4:4'
+        })
         .toFile(outputFile)
             .then(function(newFileInfo) {
                 console.log("Success");

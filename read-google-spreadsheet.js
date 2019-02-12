@@ -152,12 +152,13 @@ function listMajors(auth) {
         }
       });
 
-
-      fs.writeFile("src/assets/links.json", JSON.stringify({links: dataset}), function(err) {
+      const outputFile = "src/assets/links.json";
+      const filestats = fs.statSync(outputFile);
+      fs.writeFile(outputFile, JSON.stringify({links: dataset}), function(err) {
         if(err) {
             return console.log(err);
         }
-        console.log("The links.json file was saved!");
+        console.log("The links.json file was saved:", outputFile, "size:", filestats.size);
       }); 
       
       fs.writeFile("site.config.js", 'module.exports = ' + JSON.stringify(siteConfig) + ';', function(err) {

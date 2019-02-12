@@ -54,17 +54,17 @@ var searchInput = document.getElementById('searchInput');
 var bookCountBadge = document.getElementById('bookCountBadge');
 
 const type2color = {
-  data: ['Daten', 'primary'],
+  daten: ['Daten', 'primary'],
   info: ['Informationen', 'link'],
   news: ['Nachrichten', 'warning'],
   code: ['Code', 'info'],
   tool: ['Werkzeug', 'success'],
-  map: ['Karte', 'danger'],
+  karte: ['Karte', 'danger'],
   network: ['Netzwerk', 'light'],
   book: ['Buch', 'info'],
   blog: ['Blog', 'info'],
   info: ['Info', 'info'],
-  conference: ['Konferenz', 'dark'],
+  konferenz: ['Konferenz', 'dark'],
 }
 
 var updateBooksTable = function(books) {
@@ -83,6 +83,8 @@ var updateBooksTable = function(books) {
     }
     book['icontext'] = icon[0];
     book['icon'] = icon[1]; 
+    var img = book['img'];
+    book['image'] = img ? "/screens/" + img + ".jpg" : "";
 
   /*
   link: row[0],
@@ -166,3 +168,13 @@ xmlhttp.onreadystatechange = function() {
 }
 xmlhttp.open('GET', 'links.json', true);
 xmlhttp.send();
+
+
+function locationHashChanged() {
+  if (location.hash) {
+      searchInput.value = decodeURI(location.hash.substr(1));
+      searchBooks();
+  }
+}
+
+window.onhashchange = locationHashChanged;
