@@ -128,7 +128,7 @@ function listMajors(auth) {
           const area = row[5];
           const keyw = row[4];
           const filename = md5(row[0]);
-          const imgpath = "screenshots/large/" + filename + ".png";
+          const imgpath = "screenshots/small/" + filename + ".jpg";
           dataset.push({
             link: row[0],
             date: row[1],
