@@ -49,10 +49,11 @@ The following command builds the files in watch mode and serves the result at lo
 
 ## Ideensammlung / Todos
 
+* Lazy load images: https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
+
 * Use bulma for design
 * Nice design: https://dansup.github.io/bulma-templates/templates/kanban.html
-* Nice theme: 
-https://cssninja.io/themes/fresh
+* Nice theme:  https://cssninja.io/themes/fresh
 
 
 ## Static Site generation with nanogen
