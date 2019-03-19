@@ -163,7 +163,11 @@ xmlhttp.onreadystatechange = function() {
     showElement(indexedBooksTable);
 
     rebuildSearchIndex();
-    updateBooksTable(allBooks);
+    if (location.hash) {
+      locationHashChanged();
+    } else {
+      updateBooksTable(allBooks);
+    }
   }
 }
 xmlhttp.open('GET', 'links.json', true);
