@@ -3,7 +3,7 @@
 const sharp = require('sharp');
 const fs = require('fs');
 
-const thumbnailWidth = 320;
+const thumbnailWidth = 433;
 const jpgQuality = 65;
 
 (async () => {

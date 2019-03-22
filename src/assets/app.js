@@ -1,6 +1,6 @@
 
 
-var search, results, allBooks = [];
+var search, allBooks = [];
 
 var indexStrategySelect = document.getElementById('indexStrategySelect');
 var removeStopWordsCheckbox = document.getElementById('removeStopWordsCheckbox');
@@ -119,11 +119,11 @@ var updateBooksTable = function(books) {
   }
 };
 
-var updateBookCountAndTable = function() {
-  updateBookCount(results.length);
+var updateBookCountAndTable = function(searchResults) {
+  updateBookCount(searchResults.length);
 
-  if (results.length > 0) {
-    updateBooksTable(results);
+  if (searchResults.length > 0) {
+    updateBooksTable(searchResults);
   } else if (!!searchInput.value) {
     updateBooksTable([]);
   } else {
@@ -133,8 +133,8 @@ var updateBookCountAndTable = function() {
 };
 
 var searchBooks = function() {
-  results = search.search(searchInput.value);
-  updateBookCountAndTable();
+  var searchResults = search.search(searchInput.value);
+  updateBookCountAndTable(searchResults);
 };
 
 searchInput.oninput = searchBooks;
