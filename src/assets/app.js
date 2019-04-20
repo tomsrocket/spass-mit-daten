@@ -19,6 +19,7 @@ useStemmingCheckbox.onchange = rebuildAndRerunSearch;
 sanitizerSelect.onchange = rebuildAndRerunSearch;
 tfIdfRankingCheckbox.onchange = rebuildAndRerunSearch;
 
+var pageNr = 0;
 var rebuildSearchIndex = function() {
   search = new JsSearch.Search('link');
 
@@ -67,14 +68,48 @@ const type2color = {
   konferenz: ['Konferenz', 'dark'],
 }
 
+var maxBooks = 60;
+
+
+/**
+  Main Method that prints the books table
+
+  Format of the book element
+    link: row[0],
+    type: row[2],
+    prio: row[3],
+    keyw: row[4],
+    area: row[5],
+    titl: row[6],
+    desc: row[7]
+  */
+var pagination = 0;
+
 var updateBooksTable = function(books) {
   indexedBooksTable.innerHTML = '';
 
   var tokens = search.tokenizer.tokenize(searchInput.value);
+  var length = books.length > maxBooks ? maxBooks : books.length;
+  var start = 0;
 
-  for (var i = 0, length = books.length; i < length; i++) {
+  if (books.length > maxBooks) {
+    var nextPage = parseInt( pageNr )+1;
+    start = pageNr*maxBooks;
+    length = nextPage*maxBooks;
+    console.log("length", length, pageNr, nextPage)
+    if (length > books.length) {
+      length = books.length;
+    }
+    pagination = [start, length];
+  } else {
+    pagination = 0;
+  }
+  updateBookCount(books.length);
+
+  // Main loop that builds the list of all links
+  // TODO Add some pagination here
+  for (var i = start; i < length; i++) {
     var book = books[i];
-
 
     var icon = type2color[book["type"].toLowerCase()] ;
     if (!icon) {
@@ -86,27 +121,6 @@ var updateBooksTable = function(books) {
     var img = book['img'];
     book['image'] = img ? "/screens/" + img + ".jpg" : "";
 
-  /*
-  link: row[0],
-  type: row[2],
-  prio: row[3],
-  keyw: row[4],
-  area: row[5],
-  titl: row[6],
-  desc: row[7]
-
-<span class="tag is-black">Black</span>
-<span class="tag is-dark">Dark</span>
-<span class="tag is-light">Light</span>
-<span class="tag is-white">White</span>
-<span class="tag is-primary">Primary</span>
-<span class="tag is-link">Link</span>
-<span class="tag is-info">Info</span>
-<span class="tag is-success">Success</span>
-<span class="tag is-warning">Warning</span>
-<span class="tag is-danger">Danger</span>
-
-  */
     var source   = document.getElementById("entry-template").innerHTML;
     var template = Handlebars.compile(source);
     
@@ -116,6 +130,16 @@ var updateBooksTable = function(books) {
     var html    = template(book);
 
     indexedBooksTable.innerHTML += html;
+  }
+
+  if (books.length > maxBooks) {
+    indexedBooksTable.innerHTML += 
+      '<div id="paginationDiv" class="column is-full">'
+      + (pageNr>0 ? '<a class="button is-primary" href="#'+searchInput.value+'-'+ (parseInt(pageNr)-1) +'">'
+        //+ '<span class="icon"><i class="fab fa-github"></i></span>'
+        + '&lt;&lt; Vorherige Seite</a> &nbsp; ' : '' )
+      + ( length < books.length ? '<a class="button is-primary" href="#'+searchInput.value+'-'+ (parseInt(pageNr)+1) +'">Nächste Seite &gt;&gt;</a>' : "" )
+      + '</div>';
   }
 };
 
@@ -140,7 +164,7 @@ var searchBooks = function() {
 searchInput.oninput = searchBooks;
 
 var updateBookCount = function(numBooks) {
-  bookCountBadge.innerText = numBooks + ' Links gefunden';
+  bookCountBadge.innerText = numBooks <= maxBooks ? numBooks + ' Links gefunden' : ('Zeige Treffer ' + (parseInt(pagination[0])+1) + ' bis ' + pagination[1] + ' von ' + numBooks + ' gefundenen  Links');
 };
 var hideElement  = function(element) {
   element.className += ' hidden';
@@ -176,8 +200,22 @@ xmlhttp.send();
 
 function locationHashChanged() {
   if (location.hash) {
-      searchInput.value = decodeURI(location.hash.substr(1));
+
+      var locationHashValue = location.hash.substr(1);
+
+      // Check if we are on a different page
+      var found = locationHashValue.match(/(.*)-(\d+)$/);
+      if (found) {
+        pageNr = found[2];
+        locationHashValue = found[1];
+      } else {
+        pageNr = 0;
+      }
+      console.log(pageNr, locationHashValue, found);
+  
+      searchInput.value = decodeURI(locationHashValue);
       searchBooks();
+      scroll(0,0);
   }
 }
 
