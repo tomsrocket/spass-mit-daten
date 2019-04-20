@@ -8,7 +8,7 @@ mark {
 
 nav {z-index:1;}
 .topmargin {
-    margin-top:30px
+    margin-top:20px
 }
 nav, .bodymargin {
     background-color:#32bdc7;
@@ -17,12 +17,24 @@ nav, .bodymargin {
     background-size: 100%;
 
 }
+.navbar .navbar-link {color:black}
+.navbar .navbar-link:hover {color:white;}
+.toplogo .logoimg {float:left}
+.toplogo .logotxt {padding-top:20px}
+.logo.toplogo {width:400px;height:95px}
 .bodymargin {
     padding-top:0px;
     z-index: 100;
     position: relative;
 }
-
+#bookCountBadge {
+    margin-top: 5px;
+    display: block;
+    margin-bottom: -10px;
+}
+.logo, .logo:hover {
+    background: none !important;
+}
 .fonts {
     font-family: 'Ultra', serif;
     font-family: 'Russo One', sans-serif;
@@ -42,6 +54,7 @@ nav, .bodymargin {
 .navbar-item .logoimg img {
     max-height: 100%;
 }
+.toplogo,
 a.navbar-item.is-active.logo, 
 .navbar .navbar-item.logo {
     font-family: 'Jomhuria', cursive;
@@ -52,6 +65,11 @@ a.navbar-item.is-active.logo,
     font-weight:normal;
     text-transform:none;
     color:black;
+}
+.tagSection {
+    padding-top:20px;
+    padding-bottom:20px;
+    font-weight:bold;
 }
 .bodymargin  a.navbar-item.is-active.logo {
     font-size:80px;
