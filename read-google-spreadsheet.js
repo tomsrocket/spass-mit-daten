@@ -122,6 +122,7 @@ function listMajors(auth) {
   'Kommune21',
   'Nachrichtenmagazin für Open Data, Open Government, und Digitalisierung' ]
 */
+      var keywords = {};
       rows.map((row) => {
         if (row[2]) {
           const type = row[2];
@@ -146,10 +147,27 @@ function listMajors(auth) {
           if (area && !siteConfig.site.regions.includes(area)) {
             siteConfig.site.regions.push(area);
           }
-          if (keyw && !siteConfig.site.tags.includes(keyw)) {
-            siteConfig.site.tags.push(keyw);
+
+          if (keyw) {
+            keyw.split(',').map(function(s) { 
+              const keyword = s.trim(); 
+              if (keywords[keyword]) {
+                keywords[keyword]++;
+              } else {
+                keywords[keyword] = 1;
+              }
+            });
           }
+
         }
+      });
+
+      // sort the taglist by most used
+      var keys = Object.keys(keywords);
+      keys.sort(function(a, b) {
+          return keywords[a] - keywords[b]
+      }).reverse().forEach(function(k) {
+        siteConfig.site.tags.push([k, keywords[k]]);
       });
 
       const outputFile = "src/assets/links.json";
