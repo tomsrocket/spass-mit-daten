@@ -1,77 +1,91 @@
 
   
 <div class="bodymargin">
-
     <section class="hero">
       <div class="hero-body ">
+        
         <div class="container">
-          <div class="toplogo logo">
-            <div class="logoimg">
-              <img src="/img/logo-smile.png" />    
+          <div class="columns">
+            <div class="column is-half">
+
+              <div class="toplogo logo">
+                <div class="logoimg">
+                  <img src="/img/logo-smile.png" />    
+                </div>
+                <div class="logotxt">
+                  spass<span>mit</span>daten.de
+                </div>
+              </div>  
+
+              <h1 class="title topmargin has-text-black">
+                Die Linksammlung zum Thema "Open Data"
+              </h1>
+              <h2 class="subtitle has-text-black">
+                Hier können Sie unsere Sammlung an Open-Data-Webseiten durchsuchen. 
+              </h2>
+
+
+              <div id="searchcontainer" class="hero">
+                  <div class="hero-body is-paddingless">
+                      <div class="container">
+                          <div class="card bottommargin">
+                              <div class="card-content">
+                                  <div class="content">
+                                      <div class="control has-icons-left has-icons-right">
+                                          <input class="input is-large" type="search" id="searchInput" placeholder="Linkliste durchsuchen">
+                                          <span class="icon is-medium is-left">
+                                              <i class="fa fa-search"></i>
+                                          </span>
+                                          <span class="icon is-medium is-right">
+                                              <i class="fa fa-empire"></i>
+                                          </span>
+                                      </div>
+                                      <span id="bookCountBadge" class="badge">...</span>
+
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
+
             </div>
-            <div class="logotxt">
-              spass<span>mit</span>daten.de
+            <div class="column">
+
+                <div id="tagList" class="columns is-multiline">
+                    <div class="column">Kategorien:
+                      <% site.categories.forEach(function(tag) { %>
+                        <a href="/#<%= tag %>" class="tag is-dark"><%= tag %></a> 
+                      <% }) %>
+                    </div>
+                  </div>
+              
+                  <div id="regionList" class="columns is-multiline">
+                    <div class="column">Regionen:
+                      <% site.regions.forEach(function(tag) { %>
+                        <a href="/#<%= tag %>" class="tag is-info"><%= tag %></a> 
+                      <% }) %>
+                    </div>
+                  </div>
+              
             </div>
 
-          </div>  
-
-          <h1 class="title topmargin has-text-black">
-           Die Linksammlung zum Thema "Open Data"
-          </h1>
-          <h2 class="subtitle has-text-black">
-            Hier können Sie unsere Sammlung an Open-Data-Webseiten durchsuchen. 
-          </h2>
+          </div>
         </div>
+
       </div>
     </section>
 
-    <section id="searchcontainer" class="hero">
-        <div class="hero-body is-paddingless">
-            <div class="container">
-                <div class="card bottommargin">
-                    <div class="card-content">
-                        <div class="content">
-                            <div class="control has-icons-left has-icons-right">
-                                <input class="input is-large" type="search" id="searchInput" placeholder="Linkliste durchsuchen">
-                                <span class="icon is-medium is-left">
-                                    <i class="fa fa-search"></i>
-                                </span>
-                                <span class="icon is-medium is-right">
-                                    <i class="fa fa-empire"></i>
-                                </span>
-                            </div>
-                            <span id="bookCountBadge" class="badge">...</span>
-
-                          </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 </div>
 
-<section class="has-text-white has-background-primary">
+<!--section class="has-text-white has-background-primary">
   <div class="container tagSection topmargin">
 
 
-    <div id="tagList" class="columns is-multiline">
-      <div class="column">Kategorien:
-        <% site.categories.forEach(function(tag) { %>
-          <a href="/#<%= tag %>" class="tag is-dark"><%= tag %></a> 
-        <% }) %>
-      </div>
-    </div>
-
-    <div id="regionList" class="columns is-multiline">
-      <div class="column">Regionen:
-        <% site.regions.forEach(function(tag) { %>
-          <a href="/#<%= tag %>" class="tag is-info"><%= tag %></a> 
-        <% }) %>
-      </div>
-    </div>
-
   </div>
-</section>
+</section -->
+
 <div class="container topmargin">
  
   <ul class="list-inline" style="display:none">
@@ -104,6 +118,8 @@
   <div id="linkResultsList" class="columns is-multiline" style="min-height:400px">
     
   </div>
+
+  
 </div>
 
 
