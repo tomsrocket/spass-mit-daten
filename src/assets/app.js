@@ -55,17 +55,16 @@ var searchInput = document.getElementById('searchInput');
 var bookCountBadge = document.getElementById('bookCountBadge');
 
 const type2color = {
-  daten: ['Daten', 'primary'],
+  daten: ['Daten', 'primary', 'Datenquellen für Offene Daten'],
   info: ['Informationen', 'link'],
-  news: ['Nachrichten', 'warning'],
+  news: ['Nachrichten', 'warning', 'Links zu relevanten Nachrichtenportalen oder einzelnen Artikeln'],
   code: ['Code', 'info'],
   tool: ['Werkzeug', 'success'],
   karte: ['Karte', 'danger'],
   network: ['Netzwerk', 'light'],
-  book: ['Buch', 'info'],
-  blog: ['Blog', 'info'],
+  video: ['Video', 'info'],
   info: ['Info', 'info'],
-  konferenz: ['Konferenz', 'dark'],
+  termin: ['Termin', 'dark'],
 }
 
 var maxBooks = 60;
