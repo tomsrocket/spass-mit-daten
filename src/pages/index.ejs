@@ -25,33 +25,29 @@
               </h2>
 
 
-              <div id="searchcontainer" class="hero">
-                  <div class="hero-body is-paddingless">
-                      <div class="container">
-                          <div class="card bottommargin">
-                              <div class="card-content">
-                                  <div class="content">
-                                      <div class="control has-icons-left has-icons-right">
-                                          <input class="input is-large" type="search" id="searchInput" placeholder="Linkliste durchsuchen">
-                                          <span class="icon is-medium is-left">
-                                              <i class="fa fa-search"></i>
-                                          </span>
-                                          <span class="icon is-medium is-right">
-                                              <i class="fa fa-empire"></i>
-                                          </span>
-                                      </div>
-                                      <span id="bookCountBadge" class="badge">...</span>
+              <div id="searchcontainer">
+                <div class="card bottommargin">
+                    <div class="card-content">
+                        <div class="content">
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input is-large" type="search" id="searchInput" placeholder="Linkliste durchsuchen">
+                                <span class="icon is-medium is-left">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                                <span class="icon is-medium is-right">
+                                    <i class="fa fa-empire"></i>
+                                </span>
+                            </div>
+                            <span id="bookCountBadge" class="badge">...</span>
 
-                                    </div>
-                              </div>
                           </div>
-                      </div>
-                  </div>
+                    </div>
                 </div>
+              </div>
 
 
             </div>
-            <div class="column">
+            <div class="column is-half" id="tagSection">
 
                 <div id="tagList" class="columns is-multiline">
                     <div class="column">Kategorien:
@@ -69,6 +65,13 @@
                     </div>
                   </div>
               
+                  <div id="regionList" class="columns is-multiline bottommargin">
+                    <div class="column">Tags:
+                      <% site.tags.forEach(function(tag) { %>
+                        <a href="/#<%= tag[0] %>" class="tag is-primary"><%= tag[0] %></a> 
+                      <% }) %>
+                    </div>
+                  </div>
             </div>
 
           </div>

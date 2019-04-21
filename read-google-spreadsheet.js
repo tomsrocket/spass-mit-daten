@@ -167,7 +167,9 @@ function listMajors(auth) {
       keys.sort(function(a, b) {
           return keywords[a] - keywords[b]
       }).reverse().forEach(function(k) {
-        siteConfig.site.tags.push([k, keywords[k]]);
+        if (keywords[k] > 1) {
+          siteConfig.site.tags.push([k, keywords[k]]);
+        }
       });
 
       const outputFile = "src/assets/links.json";

@@ -61,8 +61,7 @@ const type2color = {
   code: ['Code', 'info'],
   tool: ['Werkzeug', 'success'],
   karte: ['Karte', 'danger'],
-  network: ['Netzwerk', 'light'],
-  video: ['Video', 'info'],
+  video: ['Video', 'light'],
   info: ['Info', 'info'],
   termin: ['Termin', 'dark'],
 }

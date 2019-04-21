@@ -32,6 +32,9 @@ nav, .bodymargin {
     display: block;
     margin-bottom: -10px;
 }
+#tagSection {
+    margin-top: auto;
+}
 .logo, .logo:hover {
     background: none !important;
 }
@@ -41,7 +44,7 @@ nav, .bodymargin {
     font-family: 'Kanit', sans-serif;
     font-family: 'Montserrat', sans-serif;
 }
-.bottommargin {
+.bottommargin-off {
     margin-bottom:20px;
 }
 .logo-outer {
