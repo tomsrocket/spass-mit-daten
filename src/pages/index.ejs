@@ -5,73 +5,75 @@
       <div class="hero-body ">
         
         <div class="container">
-          <div class="columns">
-            <div class="column is-half">
+          <div class="columns readability">
+            <div class="column is-half ">
+              <div class="margr">
+                <div class="toplogo logo">
+                  <div class="logoimg">
+                    <img src="/img/logo-smile.png" />    
+                  </div>
+                  <div class="logotxt">
+                    spass<span>mit</span>daten.de
+                  </div>
+                </div>  
 
-              <div class="toplogo logo">
-                <div class="logoimg">
-                  <img src="/img/logo-smile.png" />    
-                </div>
-                <div class="logotxt">
-                  spass<span>mit</span>daten.de
-                </div>
-              </div>  
-
-              <h1 class="title topmargin has-text-black">
-                Die Linksammlung zum Thema "Open Data"
-              </h1>
-              <h2 class="subtitle has-text-black">
-                Hier können Sie unsere Sammlung an Open-Data-Webseiten durchsuchen. 
-              </h2>
+                <h1 class="title topmargin has-text-black">
+                  Die Linksammlung zum Thema "Open Data"
+                </h1>
+                <h2 class="subtitle has-text-black">
+                  Hier können Sie unsere Sammlung an Open-Data-Webseiten durchsuchen. 
+                </h2>
 
 
-              <div id="searchcontainer">
-                <div class="card bottommargin">
-                    <div class="card-content">
-                        <div class="content">
-                            <div class="control has-icons-left has-icons-right">
-                                <input class="input is-large" type="search" id="searchInput" placeholder="Linkliste durchsuchen">
-                                <span class="icon is-medium is-left">
-                                    <i class="fa fa-search"></i>
-                                </span>
-                                <span class="icon is-medium is-right">
-                                    <i class="fa fa-empire"></i>
-                                </span>
+                <div id="searchcontainer">
+                  <div class="card bottommargin">
+                      <div class="card-content">
+                          <div class="content">
+                              <div class="control has-icons-left has-icons-right">
+                                  <input class="input is-large" type="search" id="searchInput" placeholder="Linkliste durchsuchen">
+                                  <span class="icon is-medium is-left">
+                                      <i class="fa fa-search"></i>
+                                  </span>
+                                  <span class="icon is-medium is-right">
+                                      <i class="fa fa-empire"></i>
+                                  </span>
+                              </div>
+                              <span id="bookCountBadge" class="badge">...</span>
+
                             </div>
-                            <span id="bookCountBadge" class="badge">...</span>
-
-                          </div>
-                    </div>
+                      </div>
+                  </div>
                 </div>
               </div>
 
-
             </div>
-            <div class="column is-half" id="tagSection">
+            <div class="column is-half is-hidden-mobile" id="tagSection">
 
+              <div class="margl">
                 <div id="tagList" class="columns is-multiline">
-                    <div class="column">Kategorien:
-                      <% site.categories.forEach(function(tag) { %>
-                        <a href="/#<%= tag %>" class="tag is-dark"><%= tag %></a> 
-                      <% }) %>
-                    </div>
+                  <div class="column">Kategorien:
+                    <% site.categories.forEach(function(tag) { %>
+                      <a href="/#<%= tag %>" class="tag is-dark"><%= tag %></a> 
+                    <% }) %>
                   </div>
-              
-                  <div id="regionList" class="columns is-multiline">
-                    <div class="column">Regionen:
-                      <% site.regions.forEach(function(tag) { %>
-                        <a href="/#<%= tag %>" class="tag is-info"><%= tag %></a> 
-                      <% }) %>
-                    </div>
+                </div>
+            
+                <div id="regionList" class="columns is-multiline">
+                  <div class="column">Regionen:
+                    <% site.regions.forEach(function(tag) { %>
+                      <a href="/#<%= tag %>" class="tag is-info"><%= tag %></a> 
+                    <% }) %>
                   </div>
-              
-                  <div id="regionList" class="columns is-multiline bottommargin">
-                    <div class="column">Tags:
-                      <% site.tags.forEach(function(tag) { %>
-                        <a href="/#<%= tag[0] %>" class="tag is-primary"><%= tag[0] %></a> 
-                      <% }) %>
-                    </div>
+                </div>
+            
+                <div id="regionList" class="columns is-multiline bottommargin">
+                  <div class="column">Tags:
+                    <% site.tags.forEach(function(tag) { %>
+                      <a href="/#<%= tag[0] %>" class="tag is-primary"><%= tag[0] %></a> 
+                    <% }) %>
                   </div>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -139,16 +141,16 @@
 <script id="entry-template" type="text/x-handlebars-template">
 
   <div class="column is-one-third">
-    <div class="card  is-shady">
-      {{#if image}}
-        <div class="card-image">
-            <figure class="image is-4by3">
-              <a href="{{link}}">
-                <img src="{{image}}" />
-              </a>
-            </figure>
-        </div>
-      {{/if}}
+    <div class="card is-shady">
+    
+      <div class="card-image">
+          <figure class="image is-16by9" {{#if image}}style="background-image:url({{image}})"{{/if}}>
+            <a href="{{link}}">
+              <img src="img/black.jpg" />
+            </a>
+          </figure>
+      </div>
+    
       <div class="card-content">
           <span class="tag is-{{icon}} is-pulled-right">{{icontext}}</span>
         <a href="{{link}}">
@@ -164,14 +166,14 @@
 
           {{#each keyw}}  
             {{#if this}}
-              <a href="#">#{{this}}</a>
+              <a href="#{{this}}">#{{this}}</a>
             {{/if}}
           {{/each}}
           
-          <br>
+          <!--br>
 
 
-          <time datetime="{{date}}">{{date}}</time>
+          <time datetime="{{date}}">{{date}}</time-->
         </div>
       </div>
     </div>

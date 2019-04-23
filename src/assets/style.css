@@ -5,17 +5,30 @@ mark {
     padding: 2px;
     margin: -2px;
 }
-
+.margr {
+    margin-left:20px;
+    margin-bottom:20px;
+}
+.margl {
+    margin-bottom:20px;
+    margin-right:20px;
+}
+body {
+    background-color:#eee;
+/*    background-image: url(img/top-bg5.jpg);
+    background-attachment: fixed;
+*/
+}
 nav {z-index:1;}
 .topmargin {
     margin-top:20px
 }
 nav, .bodymargin {
-    background-color:#32bdc7;
-    background-attachment: fixed;
-    background-image: url(img/top-background.jpg);
+    background-color:#770044;
+/*    background-attachment: fixed;
+    background-image: url(img/marvin-meyer-571072-unsplash.jpg);
     background-size: 100%;
-
+*/
 }
 .navbar .navbar-link {color:black}
 .navbar .navbar-link:hover {color:white;}
@@ -90,9 +103,17 @@ a.navbar-item.is-active.logo,
 
 .footer .content a:hover {color:white!important}
 
+footer a, footer p {
+    font-family: 'Kanit', cursive;
+    font-size: 30px;
+    text-transform:lowercase;
+    color:#ddd;
+}
 
-
-
+.readability {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius:10px;
+}
 /* shadow hover on boxes */
   .card {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
@@ -101,10 +122,18 @@ a.navbar-item.is-active.logo,
   .is-shady {
     animation: flyintoright .4s backwards;
     background: #fff;
-    box-shadow: rgba(0, 0, 0, .1) 0 1px 0;
-
-    transition: all .2s ease-in-out;
-  }
-  .is-shady:hover {
     box-shadow: 0 10px 16px rgba(0, 0, 0, .13), 0 6px 6px rgba(0, 0, 0, .19);
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    border-radius:10px;
+  }
+  .is-shady img {
+    opacity:0.2;
+    transition: all .1s ease-in-out;
+  } 
+  .is-shady img:hover {
+    opacity:0;
   }
