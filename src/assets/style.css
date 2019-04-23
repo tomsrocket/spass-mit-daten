@@ -23,7 +23,7 @@ nav {z-index:1;}
 .topmargin {
     margin-top:20px
 }
-nav, .bodymargin {
+nav, .bodymargin, .navbar {
     background-color:#770044;
 /*    background-attachment: fixed;
     background-image: url(img/marvin-meyer-571072-unsplash.jpg);
