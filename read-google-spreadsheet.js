@@ -162,6 +162,20 @@ function listMajors(auth) {
         }
       });
 
+      function comparator(data) {
+        var dd = "" + data["date"].substr(6,4) + data["date"].substr(3,2) + data["date"].substr(0,2);
+        console.log(dd);
+        return dd;
+      }
+
+      dataset.sort(function(a, b) {
+        if (comparator(a) > comparator(b))
+          return -1;
+        if ( comparator(a) < comparator(b))
+          return 1;
+        return 0;
+      });
+
       // sort the taglist by most used
       var keys = Object.keys(keywords);
       keys.sort(function(a, b) {
@@ -173,11 +187,11 @@ function listMajors(auth) {
       });
 
       const outputFile = "src/assets/links.json";
-      const filestats = fs.statSync(outputFile);
       fs.writeFile(outputFile, JSON.stringify({links: dataset}), function(err) {
         if(err) {
             return console.log(err);
         }
+        const filestats = fs.statSync(outputFile);
         console.log("The links.json file was saved:", outputFile, "size:", filestats.size);
       }); 
       
