@@ -100,12 +100,12 @@ a.navbar-item.is-active.logo,
 .hidden {
     display:none!important
 }
-
+.subtitle {margin-top:40px;font-weight:bold}
 .footer .content a:hover {color:white!important}
 
 footer a, footer p {
     font-family: 'Kanit', cursive;
-    font-size: 30px;
+    font-size: 21px;
     text-transform:lowercase;
     color:#ddd;
 }
