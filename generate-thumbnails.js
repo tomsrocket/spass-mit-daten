@@ -14,8 +14,19 @@ const jpgQuality = 65;
 
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
-            console.log("resizing to " + thumbnailWidth, file);
-            await convert('./screenshots/large/' + file, 'screenshots/small/' + file.replace(".png", ".jpg"));
+            var outputfile = 'screenshots/small/' + file.replace(".png", ".jpg");
+            var fileSizeInBytes = 0;
+            if (fs.existsSync(outputfile)) {
+                const stats = fs.statSync(outputfile);
+                fileSizeInBytes = stats.size; 
+            }
+            if (fileSizeInBytes > 50) {
+                console.log("exists", outputfile)
+            } else if (file.match(/\.png$/)) {
+                console.log("resizing to " + thumbnailWidth, file);
+                await convert('./screenshots/large/' + file, outputfile);
+        
+            }
         } 
 
     } catch (err) {
