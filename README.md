@@ -8,6 +8,12 @@ Dieses Repository enthält den Code für die Open Data Linkliste auf spassmitdat
 * Logo Icon: Smile by Gregor Cresnar from the Noun Project - https://thenounproject.com/search/?q=smile&i=770810
 * Logo Font: Jomhuria by KB Studio Principal design - https://fonts.google.com/specimen/Jomhuria
 
+## Setup
+
+If you want to have screenshots of pdf files, you need to install imagemagick
+
+    sudo snap install imagemagick
+
 ## Install
 
 1. Copy your credential files to the config directory
@@ -27,7 +33,7 @@ Dieses Repository enthält den Code für die Open Data Linkliste auf spassmitdat
 That command ^ does the following things:  
 1. Generate screenshots of all websites via: npx phantomjs generate-website-previews.js
 2. Optimize the screenshot images to width 480px via: node generate-thumbnails.js
-
+3. Download pdf files and create screenshots of the first page
 
 ## Development
 
