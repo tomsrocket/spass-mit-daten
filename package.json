@@ -5,10 +5,10 @@
   "main": "read-google-spreadsheet.js",
   "dependencies": {
     "fs": "0.0.1-security",
-    "googleapis": "^27.0.0",
+    "googleapis": "^42.0.0",
     "imagemagick": "^0.1.3",
     "md5": "^2.2.1",
-    "node-pdftk": "^2.0.3",
+    "node-pdftk": "^2.1.0",
     "node-server-screenshot": "^0.2.1",
     "sharp": "^0.22.1"
   },
