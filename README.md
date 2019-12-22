@@ -35,6 +35,12 @@ That command ^ does the following things:
 2. Optimize the screenshot images to width 480px via: node generate-thumbnails.js
 3. Download pdf files and create screenshots of the first page
 
+### Debugging
+
+If it does not work, try running it with debugging enabled
+
+    DEBUG='*' node generate-website-previews.js 
+
 ## Development
 
 The following command builds the files in watch mode and serves the result at localhost:3000
