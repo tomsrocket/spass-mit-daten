@@ -7,6 +7,7 @@ var http = require('http');
 var https = require('https');
 // var pdftk = require('node-pdftk');
 var im = require('imagemagick');
+var URL = require('url').URL;
 
 var pageWidth = 1280;
 var pageHeight = 1024;
@@ -18,7 +19,6 @@ var links = JSON.parse(content);
 var urls = links.links.map(function (url) {
     return url.link;
 });
-console.log("LIST OF URLS", urls);
 
 console.log("");
 console.log("=========================================================000");
@@ -29,15 +29,21 @@ console.log("");
 (async () => {
 
     try {
+        var urlsTotal = urls.length;
+        console.log("Processing " + urlsTotal + " URLs.")
         for (let i = 0; i < urls.length; i++) {
-            
+            console.log(i + "/" + urlsTotal)
             let address = urls[i];
             var file = md5(address) + ".png"
             var output = "screenshots/large/" + file;
-            
+            var other = "screenshots/small/" + md5(address) + ".jpg"
             var fileSizeInBytes = 0;
             if (fs.existsSync(output)) {
                 const stats = fs.statSync(output);
+                fileSizeInBytes = stats.size; 
+            }
+            if (fs.existsSync(other)) {
+                const stats = fs.statSync(other);
                 fileSizeInBytes = stats.size; 
             }
             if (fileSizeInBytes > 50) {
@@ -64,16 +70,20 @@ console.log("");
 })();
 
         
-function loadPage(address, output)
+async function loadPage(address, output)
 {
     console.log("Processing", address);
     
     return new Promise(function(resolve, reject) {
- 
+        console.debug("write to " + output )
         app.fromURL(address, output, {
             width: pageWidth,
             height: pageHeight, 
-        }, function(){
+        }, function(error){
+            if (error) {
+                console.log("ERRor: " + error);
+                reject();
+            }
             //an image of google.com has been saved at ./test.png
             console.log("wrote " + output);
             resolve();
@@ -116,7 +126,7 @@ async function pdfScreenshot(address, output)
                 
             });
             }).on('error', function(err) { // Handle errors
-            fs.unlink(dest); // Delete the file async. (But we don't check the result)
+                fs.unlink(dest); // Delete the file async. (But we don't check the result)
                 console.log("error with file", filename)
                 reject();
             });
@@ -129,7 +139,7 @@ async function pdfScreenshot(address, output)
  * This method works fine, but we don't need it, because "convert" can do that by itself
  * @param {*} pdfFileOrig 
  */
-function extractFirstPage(pdfFileOrig)
+async function extractFirstPage(pdfFileOrig)
 {
     var pdfFile = pdfFileOrig + ".pdf";
     console.log("PDF firstpage", pdfFile);   
@@ -156,7 +166,7 @@ function extractFirstPage(pdfFileOrig)
 }
 
 // convert -thumbnail x800 -background white -alpha remove screenshots/large/05ebe5aee09e233b3fbb19c49d52db36.png.pdf[0] screenshots/large/05ebe5aee09e233b3fbb19c49d52db36.png
-function pdf2png(outputFile) 
+async function pdf2png(outputFile) 
 {
     var pdfFile = outputFile + '.pdf';
     return new Promise(function(resolve, reject) {
@@ -164,7 +174,7 @@ function pdf2png(outputFile)
         im.convert(['-thumbnail', 'x800', '-background', 'white', '-alpha', 'remove', pdfFile + '[0]', outputFile], 
             function(err, stdout){
                 if (err) {
-                    console.log( err );
+                    console.log( "did not work out: ", err );
                     reject();
                 } else {
                    console.log('stdout:', stdout);
