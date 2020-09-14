@@ -1,6 +1,11 @@
 
 # Spass mit Daten
 
+*Update:* Diese Version ist obsolet. Das eingesetzte Tool "Nanogen" war nicht flexibel genug. \
+Neuer Sourcecode @ https://github.com/tomsrocket/spassmitdaten
+
+----
+
 Dieses Repository enthält den Code für die Open Data Linkliste auf spassmitdaten.de. 
 
 ## Copyright Infos
